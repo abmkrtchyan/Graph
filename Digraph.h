@@ -31,9 +31,9 @@ public:
 
     size_t getOutDegree(const Node &v) override;
 
-    /*  virtual std::set<Edge<V, E>> getEdgesWithLabel(E label);
+    bool containsEdge(const Edge &e) override;
 
-      virtual bool containsEdge(Edge<V, E> e);
+    /*  virtual std::set<Edge<V, E>> getEdgesWithLabel(E label);
 
       virtual bool containsEdge(V src, V trg);
 

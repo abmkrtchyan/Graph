@@ -94,10 +94,10 @@ public:
 //     */
 //    virtual std::set<Edge<V, E>> getEdgesWithLabel(E label) = 0;
 //
-//    /**
-//     * Check if this graph contains the given edge.
-//     */
-//    virtual bool containsEdge(Edge<V, E> e) = 0;
+    /**
+     * Check if this graph contains the given edge.
+     */
+    virtual bool containsEdge(const Edge &e) = 0;
 //
 //    /**
 //     * Check if this graph contains an edge between the given vertices.

@@ -73,7 +73,7 @@ size_t Digraph::getInDegree(const Node &v) {
         throw std::runtime_error("No such vertex in this graph!");
     } else {
         return this->inEdges[v].size();
-    };
+    }
 }
 
 size_t Digraph::getOutDegree(const Node &v) {
@@ -82,5 +82,9 @@ size_t Digraph::getOutDegree(const Node &v) {
         throw std::runtime_error("No such vertex in this graph!");
     } else {
         return this->outEdges[v].size();
-    };
+    }
+}
+
+bool Digraph::containsEdge(const Edge &e) {
+    return this->allEdges.find(e) != this->allEdges.end();
 }
