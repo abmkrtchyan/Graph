@@ -4,14 +4,16 @@
 
 #include "Edge.h"
 
-template<class V, class E>
-Edge<V, E>::Edge(V src, E lbl, V trgt) {
-    label = lbl;
-    source = src;
-    target = trgt;
-}
+Edge::Edge(const Node &src, const Label &lbl, const Node &trgt) :
+        label(lbl),
+        source(src),
+        target(trgt) {}
 
-template<class V, class E>
-Edge<V, E> Edge<V, E>::reverse() {
+Edge Edge::reverse() {
     return Edge(target, label, source);
 }
+
+bool Edge::operator<(const Edge &e) const {
+    return this->label < e.label;
+}
+
