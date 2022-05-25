@@ -90,30 +90,34 @@ public:
     virtual size_t getOutDegree(const V &v) = 0;
 
     virtual void DFS() = 0;
-//
-//    /**
-//     * Return the set of edges with a label same as the given value.
-//     */
-//    virtual std::set<Edge<V, E>> getEdgesWithLabel(E label) = 0;
-//
+
+    virtual std::stack<V> topologicalSort() = 0;
+
     /**
-     * Check if this graph contains the given edge.
-     */
+    * Check if this graph contains the given edge.
+    */
     virtual bool containsEdge(const Edge &e) = 0;
-//
-//    /**
-//     * Check if this graph contains an edge between the given vertices.
-//     */
-//    virtual bool containsEdge(V src, V trg) = 0;
-//
+
     /**
      * Check if this graph contains the given vertex.
      */
     virtual bool containsVertex(const V &v) = 0;
 
 //    /**
-//     * Check whether this graph is connected or not.
 //     * Connectivity is determined by a breadth-first-traversal starting from a random vertex.
+//     * Check whether this graph is connected or not.
 //     */
 //    virtual bool isConnected() = 0;
+
+//
+//    /**
+//     * Check if this graph contains an edge between the given vertices.
+//     */
+//    virtual bool containsEdge(V src, V trg) = 0;
+//
+//    /**
+//     * Return the set of edges with a label same as the given value.
+//     */
+//    virtual std::set<Edge<V, E>> getEdgesWithLabel(E label) = 0;
+//
 };

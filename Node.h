@@ -8,7 +8,9 @@ enum Color {
 class Node {
 private:
     int data;
-    Color color;
+    Color color = WHITE;
+    int time = 0;
+    Node *parent = nullptr;
 public:
     Node(const Node &newNode);
 

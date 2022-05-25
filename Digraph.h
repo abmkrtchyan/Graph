@@ -2,6 +2,7 @@
 #define TEST_DIGRAPH_H
 
 
+#include <stack>
 #include "Graph.h"
 #include "Node.h"
 #include "Edge.h"
@@ -36,6 +37,8 @@ public:
     bool containsVertex(const Node &v) override;
 
     void DFS() override;
+
+    std::stack<Node> topologicalSort() override;
     /*  virtual std::set<Edge<V, E>> getEdgesWithLabel(E label);
 
       virtual bool containsEdge(V src, V trg);

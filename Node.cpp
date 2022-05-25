@@ -3,6 +3,8 @@
 Node::Node(const Node &newNode) {
     this->data = newNode.data;
     this->color = newNode.color;
+    this->time = newNode.time;
+    this->parent = newNode.parent;
 }
 
 Node::Node(int data) : data(data), color(WHITE) {}
@@ -25,6 +27,8 @@ bool Node::operator<(const Node &t) const {
 
 void Node::reset() {
     this->setColor(WHITE);
+    this->time = 0;
+    this->parent = nullptr;
 }
 
 
