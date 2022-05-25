@@ -104,11 +104,11 @@ public:
 //     */
 //    virtual bool containsEdge(V src, V trg) = 0;
 //
-//    /**
-//     * Check if this graph contains the given vertex.
-//     */
-//    virtual bool containsVertex(V v) = 0;
-//
+    /**
+     * Check if this graph contains the given vertex.
+     */
+    virtual bool containsVertex(const V& v) = 0;
+
 //    /**
 //     * Check whether this graph is connected or not.
 //     * Connectivity is determined by a breadth-first-traversal starting from a random vertex.

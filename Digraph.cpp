@@ -88,3 +88,9 @@ size_t Digraph::getOutDegree(const Node &v) {
 bool Digraph::containsEdge(const Edge &e) {
     return this->allEdges.find(e) != this->allEdges.end();
 }
+
+bool Digraph::containsVertex(const Node &v) {
+    return this->allVertices.find(v) != this->allVertices.end();
+}
+
+
