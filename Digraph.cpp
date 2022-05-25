@@ -93,4 +93,10 @@ bool Digraph::containsVertex(const Node &v) {
     return this->allVertices.find(v) != this->allVertices.end();
 }
 
+void Digraph::DFS() {
+    for (auto vertex: allVertices) {
+        vertex.reset();
+    }
+}
+
 

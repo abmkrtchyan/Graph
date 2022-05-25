@@ -21,6 +21,5 @@ int main() {
     std::cout<<graph.containsVertex(6)<<std::endl;
     std::cout<<graph.containsVertex(5)<<std::endl;
 
-
     return 0;
 }

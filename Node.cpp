@@ -23,5 +23,9 @@ bool Node::operator<(const Node &t) const {
     return this->getData() < t.getData();
 }
 
+void Node::reset() {
+    this->setColor(WHITE);
+}
+
 
 

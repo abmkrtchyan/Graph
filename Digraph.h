@@ -34,6 +34,8 @@ public:
     bool containsEdge(const Edge &e) override;
 
     bool containsVertex(const Node &v) override;
+
+    void DFS() override;
     /*  virtual std::set<Edge<V, E>> getEdgesWithLabel(E label);
 
       virtual bool containsEdge(V src, V trg);

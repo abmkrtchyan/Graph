@@ -23,6 +23,8 @@ public:
     bool operator<(const Node &t) const;
 
     Node &operator=(const Node &t) = default;
+
+    void reset();
 };
 
 #endif //TEST_NODE_H

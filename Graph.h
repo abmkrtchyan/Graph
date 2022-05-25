@@ -88,6 +88,8 @@ public:
      * Return the count of outgoing edges from the given vertex.
      */
     virtual size_t getOutDegree(const V &v) = 0;
+
+    virtual void DFS() = 0;
 //
 //    /**
 //     * Return the set of edges with a label same as the given value.
@@ -107,7 +109,7 @@ public:
     /**
      * Check if this graph contains the given vertex.
      */
-    virtual bool containsVertex(const V& v) = 0;
+    virtual bool containsVertex(const V &v) = 0;
 
 //    /**
 //     * Check whether this graph is connected or not.
