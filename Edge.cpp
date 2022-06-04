@@ -17,3 +17,12 @@ bool Edge::operator<(const Edge &e) const {
     return this->label < e.label;
 }
 
+bool Edge::operator==(const Edge &rhs) const {
+    return this->source == rhs.source &&
+           this->target == rhs.target &&
+           this->label == rhs.label;
+}
+
+bool Label::operator==(const Label &rhs) const {
+    return this->value == rhs.value;
+}

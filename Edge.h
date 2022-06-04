@@ -11,6 +11,8 @@ struct Label {
     bool operator<(const Label &t) const { return this->value < t.value; };
 
     Label &operator=(const Label &t) = default;
+
+    bool operator==(const Label &rhs) const;
 };
 
 class Edge {
@@ -38,6 +40,7 @@ public:
 
     Edge &operator=(const Edge &t) = default;
 
+    bool operator==(const Edge &rhs) const;
 };
 
 

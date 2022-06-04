@@ -1,7 +1,3 @@
-//
-// Created by ab on 6/1/22.
-//
-
 #include "HashFunctions.h"
 
 std::size_t HashFunction::operator()(const Node &node) const {

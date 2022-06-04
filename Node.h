@@ -37,7 +37,7 @@ public:
 
     Node &operator=(const Node &t) = default;
 
-    inline bool operator==(const Node &rhs) const;
+    bool operator==(const Node &rhs) const;
 
     void reset();
 

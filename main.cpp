@@ -1,5 +1,7 @@
-#include <algorithm>
 #include <iostream>
+#include <unordered_set>
+#include "Node.h"
+#include "HashFunctions.h"
 #include "Digraph.h"
 
 using namespace std;

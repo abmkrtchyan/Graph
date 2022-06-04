@@ -1,12 +1,13 @@
 #include "Digraph.h"
 
 bool Digraph::addVertex(const Node &v) {
-    auto res = this->allVertices.insert(v);
-    if (res.second) {
-        this->inEdges[v] = std::set<Edge>();
-        this->outEdges[v] = std::set<Edge>();
+    if (!this->containsVertex(v)) {
+        this->allVertices.push_back(v);
+        this->inEdges[v] = std::vector<Edge>();
+        this->outEdges[v] = std::vector<Edge>();
+        return true;
     }
-    return res.second;
+    return false;
 }
 
 bool Digraph::isDirected() {
@@ -14,9 +15,9 @@ bool Digraph::isDirected() {
 }
 
 bool Digraph::removeVertex(const Node &v) {
-    auto it = this->allVertices.find(v);
+    auto it = std::find(this->allVertices.begin(), this->allVertices.end(), v);
     if (it != this->allVertices.end()) {
-        this->allVertices.erase(v);
+        this->allVertices.erase(it);
         this->allEdges.erase(inEdges[v].begin(), inEdges[v].end());
         inEdges.erase(v);
         this->allEdges.erase(outEdges[v].begin(), outEdges[v].end());
@@ -27,13 +28,14 @@ bool Digraph::removeVertex(const Node &v) {
 }
 
 bool Digraph::addEdge(const Edge &e) {
-    if (this->allVertices.find(e.source) == allVertices.end()) {
+    if (!this->containsVertex(e.source)) {
         throw std::runtime_error("No such source-vertex in this graph!");
-    } else if (this->allVertices.find(e.target) == allVertices.end()) {
+    } else if (!this->containsVertex(e.target)) {
         throw std::runtime_error("No such target-vertex in this graph!");
-    } else if (this->allEdges.insert(e).second) {
-        this->inEdges[e.target].insert(e);
-        this->outEdges[e.source].insert(e);
+    } else if (!this->containsEdge(e)) {
+        this->allEdges.push_back(e);
+        this->inEdges[e.target].push_back(e);
+        this->outEdges[e.source].push_back(e);
         return true;
     } else {
         return false;
@@ -45,17 +47,17 @@ bool Digraph::addEdge(const Node &source, const Node &target) {
 }
 
 bool Digraph::removeEdge(const Edge &e) {
-    auto it = this->allEdges.find(e);
+    auto it = std::find(this->allEdges.begin(), this->allEdges.end(), e);
     if (it != this->allEdges.end()) {
-        this->allEdges.erase(e);
-        this->inEdges[e.target].erase(e);
-        this->outEdges[e.source].erase(e);
+        this->allEdges.erase(it);
+        std::remove(this->inEdges[e.target].begin(), this->inEdges[e.target].end(), e);
+        std::remove(this->outEdges[e.source].begin(), this->outEdges[e.source].end(), e);
         return true;
     }
     return false;
 }
 
-std::set<Edge> Digraph::removeEdges(const Node &source, const Node &target) {
+std::vector<Edge> Digraph::removeEdges(const Node &source, const Node &target) {
     return {};
 }
 
@@ -68,8 +70,7 @@ size_t Digraph::edgeCount() {
 }
 
 size_t Digraph::getInDegree(const Node &v) {
-    auto it = this->allVertices.find(v);
-    if (it == this->allVertices.end()) {
+    if (!this->containsVertex(v)) {
         throw std::runtime_error("No such vertex in this graph!");
     } else {
         return this->inEdges[v].size();
@@ -77,8 +78,7 @@ size_t Digraph::getInDegree(const Node &v) {
 }
 
 size_t Digraph::getOutDegree(const Node &v) {
-    auto it = this->allVertices.find(v);
-    if (it == this->allVertices.end()) {
+    if (!this->containsVertex(v)) {
         throw std::runtime_error("No such vertex in this graph!");
     } else {
         return this->outEdges[v].size();
@@ -86,19 +86,21 @@ size_t Digraph::getOutDegree(const Node &v) {
 }
 
 bool Digraph::containsEdge(const Edge &e) {
-    return this->allEdges.find(e) != this->allEdges.end();
+    auto it = std::find(this->allEdges.begin(), this->allEdges.end(), e);
+    return it != this->allEdges.end();
 }
 
 bool Digraph::containsVertex(const Node &v) {
-    return this->allVertices.find(v) != this->allVertices.end();
+    auto it = std::find(this->allVertices.begin(), this->allVertices.end(), v);
+    return it != this->allVertices.end();
 }
 
 void Digraph::DFS() {
-    for (auto vertex: allVertices) {
+    for (auto &vertex: this->allVertices) {
         vertex.reset();
     }
     int time = 0;
-    for (auto vertex: allVertices) {
+    for (auto &vertex: allVertices) {
         if (vertex.getColor() == WHITE) {
             dfsVisit(vertex, time);
         }

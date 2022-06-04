@@ -12,9 +12,8 @@
 #include "HashFunctions.h"
 
 
-class Digraph : public Graph<Node, HashFunction> {
+class Digraph : public Graph<Node> {
 public:
-    Digraph();
 
     bool isDirected() override;
 
@@ -28,7 +27,7 @@ public:
 
     bool removeEdge(const Edge &e) override;
 
-    std::set<Edge> removeEdges(const Node &source, const Node &target) override;
+    std::vector<Edge> removeEdges(const Node &source, const Node &target) override;
 
     size_t vertexCount() override;
 
@@ -45,6 +44,7 @@ public:
     void DFS() override;
 
     std::vector<Node> topologicalSort() override;
+
     /*  virtual std::set<Edge<V, E>> getEdgesWithLabel(E label);
 
       virtual bool containsEdge(V src, V trg);

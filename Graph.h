@@ -2,21 +2,17 @@
 #define TEST_GRAPH_H
 
 
-#include <set>
 #include <map>
 #include <cstdio>
-#include <unordered_set>
 #include "Edge.h"
 
-template<class V, typename E>
+template<class V>
 class Graph {
 protected:
-    Graph() {}
-
-    std::unordered_set<V, E> allVertices;
-    std::set<Edge> allEdges;
-    std::map<V, std::set<Edge>> inEdges;
-    std::map<V, std::set<Edge>> outEdges;
+    std::vector<V> allVertices;
+    std::vector<Edge> allEdges;
+    std::map<V, std::vector<Edge>> inEdges;
+    std::map<V, std::vector<Edge>> outEdges;
 public:
     /**
     * Check whether this graph is directed or not.
@@ -75,7 +71,7 @@ public:
      * @return the set of edges removed from this graph as a result of this operation.
      */
 
-    virtual std::set<Edge> removeEdges(const V &source, const V &target) = 0;
+    virtual std::vector<Edge> removeEdges(const V &source, const V &target) = 0;
 
     /**
      * Return the number of vertices in this graph.
