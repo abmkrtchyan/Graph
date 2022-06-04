@@ -1,11 +1,19 @@
+#ifndef TEST_GRAPH_H
+#define TEST_GRAPH_H
+
+
 #include <set>
 #include <map>
+#include <cstdio>
+#include <unordered_set>
 #include "Edge.h"
 
-template<class V>
+template<class V, typename E>
 class Graph {
 protected:
-    std::set<V> allVertices;
+    Graph() {}
+
+    std::unordered_set<V, E> allVertices;
     std::set<Edge> allEdges;
     std::map<V, std::set<Edge>> inEdges;
     std::map<V, std::set<Edge>> outEdges;
@@ -91,7 +99,7 @@ public:
 
     virtual void DFS() = 0;
 
-    virtual std::stack<V> topologicalSort() = 0;
+    virtual std::vector<V> topologicalSort() = 0;
 
     /**
     * Check if this graph contains the given edge.
@@ -121,3 +129,5 @@ public:
 //    virtual std::set<Edge<V, E>> getEdgesWithLabel(E label) = 0;
 //
 };
+
+#endif //TEST_GRAPH_H

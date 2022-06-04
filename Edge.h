@@ -6,7 +6,7 @@
 struct Label {
     int value;
 
-    Label(int value) : value(value) {};
+    explicit Label(int value) : value(value) {};
 
     bool operator<(const Label &t) const { return this->value < t.value; };
 

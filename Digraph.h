@@ -3,13 +3,19 @@
 
 
 #include <stack>
+#include <vector>
+#include <algorithm>
+#include <stdexcept>
 #include "Graph.h"
 #include "Node.h"
 #include "Edge.h"
+#include "HashFunctions.h"
 
 
-class Digraph : public Graph<Node> {
+class Digraph : public Graph<Node, HashFunction> {
 public:
+    Digraph();
+
     bool isDirected() override;
 
     bool addVertex(const Node &v) override;
@@ -38,12 +44,14 @@ public:
 
     void DFS() override;
 
-    std::stack<Node> topologicalSort() override;
+    std::vector<Node> topologicalSort() override;
     /*  virtual std::set<Edge<V, E>> getEdgesWithLabel(E label);
 
       virtual bool containsEdge(V src, V trg);
 
       virtual bool isConnected(); */
+private:
+    void dfsVisit(Node &node, int &time);
 };
 
 

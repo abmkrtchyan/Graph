@@ -97,6 +97,36 @@ void Digraph::DFS() {
     for (auto vertex: allVertices) {
         vertex.reset();
     }
+    int time = 0;
+    for (auto vertex: allVertices) {
+        if (vertex.getColor() == WHITE) {
+            dfsVisit(vertex, time);
+        }
+    }
 }
+
+void Digraph::dfsVisit(Node &node, int &time) {
+    node.setStart(time++);
+    node.setColor(GREY);
+    for (const auto &outEdge: outEdges[node]) {
+        Node vertex = outEdge.target;
+        if (vertex.getColor() == WHITE) {
+            vertex.setParent(&node);
+            dfsVisit(vertex, time);
+        }
+    }
+    node.setColor(BLACK);
+    node.setFinish(time++);
+}
+
+std::vector<Node> Digraph::topologicalSort() {
+    DFS();
+    std::vector<Node> sortedVertexes(allVertices.begin(), allVertices.end());
+    std::sort(sortedVertexes.begin(), sortedVertexes.end(), [](const Node &a, const Node &b) -> bool {
+        return a.getFinish() < b.getFinish();
+    });
+    return sortedVertexes;
+}
+
 
 
