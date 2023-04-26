@@ -1,46 +1,58 @@
-#ifndef TEST_DIGRAPH_H
-#define TEST_DIGRAPH_H
+#ifndef DIGRAPH_H
+#define DIGRAPH_H
 
 
+#include <stack>
+#include <vector>
+#include <algorithm>
+#include <stdexcept>
 #include "Graph.h"
 #include "Node.h"
 #include "Edge.h"
+#include "HashFunctions.h"
 
 
-class Digraph : public Graph<Node , Edge<int, int >> /*<Node, Edge<int, int >>*/ {
+class Digraph : public Graph<Node> {
 public:
+
     bool isDirected() override;
 
-    bool addVertex(const Node& v) override;
-//
-/*    virtual bool removeVertex(V v);
+    bool addVertex(const Node &v) override;
 
-    virtual bool addEdge(Edge<V, E> e);
+    bool removeVertex(const Node &v) override;
 
-    virtual bool addEdge(V source, V target);
+    bool addEdge(const Edge &e) override;
 
-    virtual bool removeEdge(Edge<V, E> e);
+    bool addEdge(const Node &source, const Node &target) override;
 
-    virtual std::set<Edge<V, E>> removeEdges(V source, V target);
+    bool removeEdge(const Edge &e) override;
 
-    virtual int vertexCount();
+    std::vector<Edge> removeEdges(const Node &source, const Node &target) override;
 
-    virtual int edgeCount();
+    size_t vertexCount() override;
 
-    virtual int getInDegree(V v);
+    size_t edgeCount() override;
 
-    virtual int getOutDegree(V v);
+    size_t getInDegree(const Node &v) override;
 
-    virtual std::set<Edge<V, E>> getEdgesWithLabel(E label);
+    size_t getOutDegree(const Node &v) override;
 
-    virtual bool containsEdge(Edge<V, E> e);
+    bool containsEdge(const Edge &e) override;
 
-    virtual bool containsEdge(V src, V trg);
+    bool containsVertex(const Node &v) override;
 
-    virtual bool containsVertex(V v);
+    void DFS() override;
 
-    virtual bool isConnected(); */
+    std::vector<Node> topologicalSort() override;
+
+    /*  virtual std::set<Edge<V, E>> getEdgesWithLabel(E label);
+
+      virtual bool containsEdge(V src, V trg);
+
+      virtual bool isConnected(); */
+private:
+    void dfsVisit(Node &node, int &time);
 };
 
 
-#endif //TEST_DIGRAPH_H
+#endif //DIGRAPH_H

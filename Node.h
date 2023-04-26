@@ -1,3 +1,9 @@
+#ifndef GRAPH_NODE_H
+#define GRAPH_NODE_H
+
+#include <utility>
+#include <climits>
+
 enum Color {
     WHITE, GREY, BLACK
 };
@@ -5,13 +11,38 @@ enum Color {
 class Node {
 private:
     int data;
-    Color color;
+    Color color = WHITE;
+    std::pair<int, int> timestamp{INT_MIN, INT_MAX};
+    Node *parent = nullptr;
 public:
-    Color getColor();
+    Node(const Node &newNode);
+
+    Node(int data);
 
     int getData() const;
 
+    Color getColor();
+
     void setColor(Color newColor);
 
-    bool operator<(Node t);
+    int getStart() const;
+
+    void setStart(int start);
+
+    int getFinish() const;
+
+    void setFinish(int finish);
+
+    bool operator<(const Node &t) const;
+
+    Node &operator=(const Node &t) = default;
+
+    bool operator==(const Node &rhs) const;
+
+    void reset();
+
+    void setParent(Node *node);
+
 };
+
+#endif //GRAPH_NODE_H

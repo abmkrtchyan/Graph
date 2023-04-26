@@ -1,62 +1,40 @@
-#include <cstdio>
-#include <algorithm>
 #include <iostream>
-#include <vector>
-#include <limits>
+#include <unordered_set>
+#include "Node.h"
+#include "HashFunctions.h"
+#include "Digraph.h"
 
-#define MAX 101
 using namespace std;
 
-enum colors {
-    BLACK, WHITE, GRAY
-};
-int color[MAX], d[MAX], p[MAX], f[MAX], t, vertex, edge;
-int NIL = numeric_limits<int>::min();
-
-void DFS(vector<int>[]);
-
-void DFS_VISIT(vector<int>[], int);
-
 int main() {
-    //freopen("dfs.txt", "r", stdin);
-    vector<int> adjList[MAX];
-    int u, v;
-    cin >> vertex >> edge;
-    for (int e = 1; e <= edge; e++) {
-        cin >> u >> v;
-        adjList[u].push_back(v);
-    }
-    DFS(adjList);
-    for (int v = 1; v <= vertex; v++) {
-        printf("v%d (%d/%d)\n", v, d[v], f[v]);
-    }
+    std::unordered_set<Node, HashFunction> myset;
+    myset.insert(Node(9));
+    Digraph graph{};
+    graph.addVertex(5);
+    graph.addVertex(1);
+    graph.addVertex(2);
+    graph.addVertex(3);
+    graph.addVertex(4);
+    graph.addVertex(6);
+    graph.addVertex(7);
+    graph.addVertex(0);
+
+    graph.removeVertex(7);
+
+    graph.addEdge(5, 2);
+    graph.addEdge(5, 0);
+    graph.addEdge(4, 0);
+    graph.addEdge(4, 1);
+    graph.addEdge(2, 3);
+    graph.addEdge(3, 1);
+
+    std::cout << graph.containsVertex(7) << std::endl;
+    std::cout << graph.containsVertex(6) << std::endl;
+    std::cout << graph.containsVertex(5) << std::endl;
+
+    for (const auto &vertex: graph.topologicalSort())
+        std::cout << vertex.getData() << " ";
+
+
     return 0;
-}
-
-void DFS(vector<int> G[]) {
-    for (int u = 0; u <= vertex; u++) {
-        color[u] = WHITE;
-        p[u] = NIL;
-    }
-    t = 0;
-    for (int u = 1; u <= vertex; u++) {
-        if (color[u] == WHITE) {
-            DFS_VISIT(G, u);
-        }
-    }
-}
-
-void DFS_VISIT(vector<int> G[], int u) {
-    t = t + 1;
-    d[u] = t;
-    color[u] = GRAY;
-    for (int v = 0; v < G[u].size(); v++) {
-        if (color[G[u][v]] == WHITE) {
-            p[G[u][v]] = u;
-            DFS_VISIT(G, G[u][v]);
-        }
-    }
-    color[u] = BLACK;
-    t = t + 1;
-    f[u] = t;
 }
