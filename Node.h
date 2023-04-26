@@ -1,5 +1,5 @@
-#ifndef TEST_NODE_H
-#define TEST_NODE_H
+#ifndef GRAPH_NODE_H
+#define GRAPH_NODE_H
 
 #include <utility>
 #include <climits>
@@ -45,4 +45,4 @@ public:
 
 };
 
-#endif //TEST_NODE_H
+#endif //GRAPH_NODE_H

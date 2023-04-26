@@ -1,7 +1,3 @@
-//
-// Created by ab on 5/18/22.
-//
-
 #include "Edge.h"
 
 Edge::Edge(const Node &src, const Label &lbl, const Node &trgt) :

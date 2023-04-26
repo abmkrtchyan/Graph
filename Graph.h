@@ -1,5 +1,5 @@
-#ifndef TEST_GRAPH_H
-#define TEST_GRAPH_H
+#ifndef GRAPH_H
+#define GRAPH_H
 
 
 #include <map>
@@ -126,4 +126,4 @@ public:
 //
 };
 
-#endif //TEST_GRAPH_H
+#endif //GRAPH_H

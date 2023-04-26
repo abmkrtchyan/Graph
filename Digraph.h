@@ -1,5 +1,5 @@
-#ifndef TEST_DIGRAPH_H
-#define TEST_DIGRAPH_H
+#ifndef DIGRAPH_H
+#define DIGRAPH_H
 
 
 #include <stack>
@@ -55,4 +55,4 @@ private:
 };
 
 
-#endif //TEST_DIGRAPH_H
+#endif //DIGRAPH_H
