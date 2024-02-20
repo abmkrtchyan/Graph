@@ -4,6 +4,7 @@
 
 #include <map>
 #include <cstdio>
+#include <vector>
 #include "Edge.h"
 
 template<class V>
