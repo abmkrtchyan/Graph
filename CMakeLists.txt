@@ -1,6 +1,10 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.0)
 project(Graph)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Graph main.cpp Node.cpp Edge.cpp Digraph.cpp HashFunctions.cpp)
+include_directories(include)
+
+file(GLOB SOURCES "src/*.cpp")
+
+add_executable(Graph ${SOURCES})
